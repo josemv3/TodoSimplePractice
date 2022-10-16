@@ -39,9 +39,12 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         let newItem = Item()
         newItem.title = textView.text
         newItem.done = false
+        newItem.date = "4/4/22"
         itemArray.append(newItem)
         
         saveItems()
+        loadItems()
+        
         self.dismiss(animated: true, completion: nil)
         
     }

@@ -17,13 +17,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" id="GTQ-UI-ZEk" customClass="todoListCell">
-                                <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" id="GTQ-UI-ZEk" customClass="TodoListCell" customModule="TODOCodable" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="390" height="20.666666030883789"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GTQ-UI-ZEk" id="yQM-XL-IZI">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="20.666666030883789"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laH-4F-LlP" userLabel="mainLabel">
+                                            <rect key="frame" x="20" y="0.0" width="268" height="20.666666666666668"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUn-Qo-v3Z">
+                                            <rect key="frame" x="296" y="0.0" width="74" height="20.666666666666668"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="centerY" secondItem="laH-4F-LlP" secondAttribute="centerY" id="6NE-Wv-xkv"/>
+                                        <constraint firstItem="laH-4F-LlP" firstAttribute="top" secondItem="yQM-XL-IZI" secondAttribute="topMargin" constant="-11" id="6gr-Zm-gJM"/>
+                                        <constraint firstItem="laH-4F-LlP" firstAttribute="leading" secondItem="yQM-XL-IZI" secondAttribute="leadingMargin" id="PIc-8H-ggk"/>
+                                        <constraint firstItem="laH-4F-LlP" firstAttribute="centerY" secondItem="yQM-XL-IZI" secondAttribute="centerY" id="SSJ-Jm-SDk"/>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="firstBaseline" secondItem="laH-4F-LlP" secondAttribute="firstBaseline" id="Ssa-cE-ve3"/>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="leading" secondItem="laH-4F-LlP" secondAttribute="trailing" constant="8" id="VPS-VR-s77"/>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="trailing" secondItem="yQM-XL-IZI" secondAttribute="trailingMargin" id="Xf0-FQ-qqg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="laH-4F-LlP" secondAttribute="trailing" constant="82" id="n4Q-RT-Blo"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="aUn-Qo-v3Z" id="Qze-iz-lT6"/>
+                                    <outlet property="mainLabel" destination="laH-4F-LlP" id="cXU-2f-NsK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

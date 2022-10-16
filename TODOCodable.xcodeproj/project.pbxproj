@@ -18,6 +18,7 @@
 		E07EB22528FB7DA300D7FD03 /* TodoAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EB22428FB7DA300D7FD03 /* TodoAddViewController.swift */; };
 		E07EB22B28FB892A00D7FD03 /* TodoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EB22A28FB892A00D7FD03 /* TodoDetailViewController.swift */; };
 		E0A4242928FC87000043A52E /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4242828FC87000043A52E /* KeyboardLayoutConstraint.swift */; };
+		E0A4242B28FC93CE0043A52E /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4242A28FC93CE0043A52E /* TodoListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E07EB22428FB7DA300D7FD03 /* TodoAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAddViewController.swift; sourceTree = "<group>"; };
 		E07EB22A28FB892A00D7FD03 /* TodoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewController.swift; sourceTree = "<group>"; };
 		E0A4242828FC87000043A52E /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+		E0A4242A28FC93CE0043A52E /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				E07EB22228FB7C3D00D7FD03 /* Item.swift */,
+				E0A4242A28FC93CE0043A52E /* TodoListCell.swift */,
 				E07EB21428FB796900D7FD03 /* TODOCodable.xcdatamodeld */,
 			);
 			path = "Data Model";
@@ -189,6 +192,7 @@
 				E07EB22328FB7C3D00D7FD03 /* Item.swift in Sources */,
 				E07EB21628FB796900D7FD03 /* TODOCodable.xcdatamodeld in Sources */,
 				E07EB21028FB796900D7FD03 /* TodoListViewController.swift in Sources */,
+				E0A4242B28FC93CE0043A52E /* TodoListCell.swift in Sources */,
 				E07EB20C28FB796900D7FD03 /* AppDelegate.swift in Sources */,
 				E0A4242928FC87000043A52E /* KeyboardLayoutConstraint.swift in Sources */,
 				E07EB20E28FB796900D7FD03 /* SceneDelegate.swift in Sources */,
