@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oBy-At-gHc">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TODO-->
+        <scene sceneID="E9y-TL-k4A">
+            <objects>
+                <tableViewController id="inc-C7-vXg" customClass="TodoListViewController" customModule="TODOCodable" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="JzP-h0-0ua">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" id="GTQ-UI-ZEk" customClass="todoListCell">
+                                <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GTQ-UI-ZEk" id="yQM-XL-IZI">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="inc-C7-vXg" id="VX3-Ko-m7J"/>
+                            <outlet property="delegate" destination="inc-C7-vXg" id="kGK-Nc-4qG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="TODO" id="UBy-ue-ToT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="H05-Lj-WNr">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="onI-At-7Jb" kind="presentation" identifier="goTodoAdd" id="Zez-JL-4xZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="FDv-Gb-w31" kind="show" identifier="goTodoDetail" id="WxA-5i-Ci2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PjY-KR-6sh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1504.6153846153845" y="3.5545023696682461"/>
+        </scene>
+        <!--Todo Detail View Controller-->
+        <scene sceneID="9jF-d3-kFU">
+            <objects>
+                <viewController id="FDv-Gb-w31" customClass="TodoDetailViewController" customModule="TODOCodable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GEu-b6-DOt">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BlL-4X-g35"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="83f-gM-I4E">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Uub-3a-kq9">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="editBtnTap:" destination="FDv-Gb-w31" id="1UQ-6O-P4d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="editBtn" destination="Uub-3a-kq9" id="NQq-yG-AVu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amf-fa-mcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2285" y="4"/>
+        </scene>
+        <!--Todo Add View Controller-->
+        <scene sceneID="SFy-17-Tkw">
+            <objects>
+                <viewController id="MRg-he-wy8" customClass="TodoAddViewController" customModule="TODOCodable" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TVo-uq-GF6">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-ag-DnT">
+                                <rect key="frame" x="0.0" y="56" width="390" height="765"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GLZ-fb-xWO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GOM-ag-DnT" firstAttribute="leading" secondItem="GLZ-fb-xWO" secondAttribute="leading" id="0lO-e9-0vq"/>
+                            <constraint firstItem="GOM-ag-DnT" firstAttribute="centerX" secondItem="TVo-uq-GF6" secondAttribute="centerX" id="NmT-OV-8Ii"/>
+                            <constraint firstItem="GOM-ag-DnT" firstAttribute="top" secondItem="GLZ-fb-xWO" secondAttribute="top" id="YI6-gg-hRE"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GOM-ag-DnT" secondAttribute="bottom" constant="-34" id="dfy-8Q-vT0" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CO3-zG-m1n">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="sH2-hj-iB5">
+                            <connections>
+                                <action selector="cancelBtnTap:" destination="MRg-he-wy8" id="3Ka-Mj-WA8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="RzW-QX-mne">
+                            <connections>
+                                <action selector="saveBtnTap:" destination="MRg-he-wy8" id="57E-mb-xX0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="GOM-ag-DnT" id="dXs-Gp-20G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISk-ZP-0oe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2284.6153846153848" y="723.69668246445497"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9ZP-eN-vhR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oBy-At-gHc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EAO-h9-5DD">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemCyanColor"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="inc-C7-vXg" kind="relationship" relationship="rootViewController" id="Ofb-Wj-UYR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pGH-ul-G9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713.84615384615381" y="3.5545023696682461"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="avs-XW-Zmc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="onI-At-7Jb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1nz-KH-dTB">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MRg-he-wy8" kind="relationship" relationship="rootViewController" id="c8i-7c-9cm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzN-bE-LGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1505" y="724"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
