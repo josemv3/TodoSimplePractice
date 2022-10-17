@@ -17,35 +17,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" id="GTQ-UI-ZEk" customClass="TodoListCell" customModule="TODOCodable" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="390" height="20.666666030883789"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" rowHeight="46" id="GTQ-UI-ZEk" customClass="TodoListCell" customModule="TODOCodable" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="390" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GTQ-UI-ZEk" id="yQM-XL-IZI">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="20.666666030883789"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laH-4F-LlP" userLabel="mainLabel">
-                                            <rect key="frame" x="20" y="0.0" width="268" height="20.666666666666668"/>
+                                            <rect key="frame" x="20" y="0.0" width="268" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="268" id="7Os-6S-mHd"/>
+                                                <constraint firstAttribute="height" constant="45" id="brt-Ou-Ssl"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUn-Qo-v3Z">
-                                            <rect key="frame" x="296" y="0.0" width="74" height="20.666666666666668"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUn-Qo-v3Z">
+                                            <rect key="frame" x="296" y="0.0" width="94" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="Xto-Tn-3ca"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="centerY" secondItem="laH-4F-LlP" secondAttribute="centerY" id="6NE-Wv-xkv"/>
-                                        <constraint firstItem="laH-4F-LlP" firstAttribute="top" secondItem="yQM-XL-IZI" secondAttribute="topMargin" constant="-11" id="6gr-Zm-gJM"/>
-                                        <constraint firstItem="laH-4F-LlP" firstAttribute="leading" secondItem="yQM-XL-IZI" secondAttribute="leadingMargin" id="PIc-8H-ggk"/>
-                                        <constraint firstItem="laH-4F-LlP" firstAttribute="centerY" secondItem="yQM-XL-IZI" secondAttribute="centerY" id="SSJ-Jm-SDk"/>
-                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="firstBaseline" secondItem="laH-4F-LlP" secondAttribute="firstBaseline" id="Ssa-cE-ve3"/>
-                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="leading" secondItem="laH-4F-LlP" secondAttribute="trailing" constant="8" id="VPS-VR-s77"/>
-                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="trailing" secondItem="yQM-XL-IZI" secondAttribute="trailingMargin" id="Xf0-FQ-qqg"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="laH-4F-LlP" secondAttribute="trailing" constant="82" id="n4Q-RT-Blo"/>
+                                        <constraint firstItem="laH-4F-LlP" firstAttribute="top" secondItem="yQM-XL-IZI" secondAttribute="top" id="K3f-zl-ztq"/>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="baseline" secondItem="laH-4F-LlP" secondAttribute="baseline" id="R1G-2l-LzH"/>
+                                        <constraint firstItem="aUn-Qo-v3Z" firstAttribute="leading" secondItem="laH-4F-LlP" secondAttribute="trailing" constant="8" symbolic="YES" id="Zdi-ur-51l"/>
+                                        <constraint firstItem="laH-4F-LlP" firstAttribute="leading" secondItem="yQM-XL-IZI" secondAttribute="leadingMargin" id="gRG-r2-3r3"/>
+                                        <constraint firstAttribute="trailing" secondItem="aUn-Qo-v3Z" secondAttribute="trailing" id="hMp-Xf-d74"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -82,8 +86,24 @@
                     <view key="view" contentMode="scaleToFill" id="GEu-b6-DOt">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="waD-rV-RnY">
+                                <rect key="frame" x="0.0" y="91" width="390" height="753"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="BlL-4X-g35"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="waD-rV-RnY" firstAttribute="leading" secondItem="GEu-b6-DOt" secondAttribute="leading" id="2Pw-s5-XA0"/>
+                            <constraint firstItem="waD-rV-RnY" firstAttribute="top" secondItem="BlL-4X-g35" secondAttribute="top" id="Qb3-Vx-998"/>
+                            <constraint firstAttribute="trailing" secondItem="waD-rV-RnY" secondAttribute="trailing" id="kiO-f9-TYj"/>
+                            <constraint firstItem="waD-rV-RnY" firstAttribute="bottom" secondItem="GEu-b6-DOt" secondAttribute="bottom" id="plq-tu-dGJ" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="83f-gM-I4E">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Uub-3a-kq9">
@@ -94,12 +114,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="detailsTextView" destination="waD-rV-RnY" id="fAc-Ms-gnz"/>
                         <outlet property="editBtn" destination="Uub-3a-kq9" id="NQq-yG-AVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amf-fa-mcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2285" y="4"/>
+            <point key="canvasLocation" x="2307.6923076923076" y="3.5545023696682461"/>
         </scene>
         <!--Todo Add View Controller-->
         <scene sceneID="SFy-17-Tkw">
@@ -134,7 +155,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="RzW-QX-mne">
                             <connections>
-                                <action selector="saveBtnTap:" destination="MRg-he-wy8" id="57E-mb-xX0"/>
+                                <segue destination="Hsd-zR-d6W" kind="unwind" unwindAction="unwindTodoListViewControllerWithUnwindSegue:" id="ERH-6D-ieV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -143,8 +164,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISk-ZP-0oe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Hsd-zR-d6W" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2284.6153846153848" y="723.69668246445497"/>
+            <point key="canvasLocation" x="2309.2307692307691" y="723.69668246445497"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9ZP-eN-vhR">

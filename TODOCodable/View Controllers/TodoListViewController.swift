@@ -12,19 +12,15 @@ let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDo
 
 class TodoListViewController: UITableViewController {
     
+    var itemSelected: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let newItem = Item()
-        newItem.title = "Dodgers"
-        newItem.date = "1/1/22"
-        itemArray.append(newItem)
-        
-        let newItem2 = Item()
-        newItem2.title = "Yankees"
-        newItem2.date = "2/2/22"
-        itemArray.append(newItem2)
+//        let newItem = Item()
+//        newItem.title = "Dodgers"
+//        newItem.date = "1/1/22"
+//        itemArray.append(newItem)
         
         loadItems()
     }
@@ -42,19 +38,38 @@ class TodoListViewController: UITableViewController {
         //cell.textLabel?.text = itemArray[indexPath.row].title
         //cell.textLabel?.numberOfLines = 3
         
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(itemArray[indexPath.row].title)
-        
+        //print(itemArray[indexPath.row].title)
+        itemSelected = itemArray[indexPath.row].title
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goTodoDetail", sender: self)
-        
     }
 
     @IBAction func addButton(_ sender: UIBarButtonItem) {
+    }
+    
+    func createNewItem(title: String) {
+        let newItem = Item()
+        newItem.title = title
+        newItem.done = false
+        newItem.date = "4/4/22"
+        itemArray.append(newItem)
+        
+        saveItems()
+    }
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding item array\(error)")
+        }
     }
     
     func loadItems() {
@@ -65,9 +80,20 @@ class TodoListViewController: UITableViewController {
             } catch {
                 print("Error decoding itemArray\(error)")
             }
-
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! TodoDetailViewController
+        destinationVC.itemSelectedTodoList = itemSelected
+        //destinationVC.detailsTextView.text = itemSelected
+        print(itemSelected)
+    }
+    
+    @IBAction func unwindTodoListViewController(unwindSegue: UIStoryboardSegue) {
+    }
+    //use viewWillApear for ipad
 
 }
 

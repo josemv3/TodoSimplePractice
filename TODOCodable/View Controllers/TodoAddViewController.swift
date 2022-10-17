@@ -35,44 +35,38 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func saveBtnTap(_ sender: UIBarButtonItem) {
-        let newItem = Item()
-        newItem.title = textView.text
-        newItem.done = false
-        newItem.date = "4/4/22"
-        itemArray.append(newItem)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        saveItems()
-        loadItems()
-        
-        self.dismiss(animated: true, completion: nil)
-        
+        let destinationVC = segue.destination as! TodoListViewController
+        destinationVC.createNewItem(title: textView.text)
+        destinationVC.tableView.reloadData()
     }
     
     @IBAction func cancelBtnTap(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func saveItems() {
-        let encoder = PropertyListEncoder()
-        
-        do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
-        } catch {
-            print("Error encoding item array\(error)")
-        }
-    }
-    func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error decoding item array\(error)")
-            }
-        }
-    }
+//    func saveItems() {
+//        let encoder = PropertyListEncoder()
+//
+//        do {
+//            let data = try encoder.encode(itemArray)
+//            try data.write(to: dataFilePath!)
+//        } catch {
+//            print("Error encoding item array\(error)")
+//        }
+//    }
+    
+//    func loadItems() {
+//        if let data = try? Data(contentsOf: dataFilePath!) {
+//            let decoder = PropertyListDecoder()
+//            do {
+//                itemArray = try decoder.decode([Item].self, from: data)
+//            } catch {
+//                print("Error decoding item array\(error)")
+//            }
+//        }
+//    }
     
 }
 
