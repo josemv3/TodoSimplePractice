@@ -89,6 +89,7 @@ class TodoListViewController: UITableViewController {
         destinationVC.itemSelectedTodoList = itemSelected
         //destinationVC.detailsTextView.text = itemSelected
         print(itemSelected)
+        print(itemArray)
     }
     
     @IBAction func unwindTodoListViewController(unwindSegue: UIStoryboardSegue) {
