@@ -10,6 +10,9 @@ import UIKit
 class TodoAddViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var todoAddTitleTF: UITextField!
+    
+    var newTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +21,6 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         textView.delegate = self
         textView.text = "Tap here..."
         textView.textColor = UIColor.lightGray
-    
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -38,7 +40,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! TodoListViewController
-        destinationVC.createNewItem(title: textView.text)
+        destinationVC.createNewItem(title: todoAddTitleTF.text ?? "Blank", description: textView.text)
         destinationVC.tableView.reloadData()
     }
     
@@ -46,27 +48,8 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-//    func saveItems() {
-//        let encoder = PropertyListEncoder()
-//
-//        do {
-//            let data = try encoder.encode(itemArray)
-//            try data.write(to: dataFilePath!)
-//        } catch {
-//            print("Error encoding item array\(error)")
-//        }
-//    }
-    
-//    func loadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!) {
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                print("Error decoding item array\(error)")
-//            }
-//        }
-//    }
-    
 }
+
+    
+
 

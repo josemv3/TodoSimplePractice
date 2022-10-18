@@ -12,13 +12,15 @@ let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDo
 
 class TodoListViewController: UITableViewController {
     
-    var itemSelected: String = ""
+    var itemSelected = Item()
+    var itemSelectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        let newItem = Item()
 //        newItem.title = "Dodgers"
+//        newItem.description = "YOYOYO"
 //        newItem.date = "1/1/22"
 //        itemArray.append(newItem)
         
@@ -33,17 +35,16 @@ class TodoListViewController: UITableViewController {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
         cell.mainLabel.text = itemArray[indexPath.row].title
-        cell.mainLabel.numberOfLines = 3
-        cell.dateLabel.text = itemArray[indexPath.row].date
-        //cell.textLabel?.text = itemArray[indexPath.row].title
-        //cell.textLabel?.numberOfLines = 3
+        cell.detailLabel.text = itemArray[indexPath.row].description
+        cell.detailLabel.numberOfLines = 2
+        cell.dateLabel.text = itemArray[indexPath.row].date + itemArray[indexPath.row].time
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(itemArray[indexPath.row].title)
-        itemSelected = itemArray[indexPath.row].title
+        itemSelected = itemArray[indexPath.row]
+        itemSelectedIndex = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goTodoDetail", sender: self)
     }
@@ -51,14 +52,30 @@ class TodoListViewController: UITableViewController {
     @IBAction func addButton(_ sender: UIBarButtonItem) {
     }
     
-    func createNewItem(title: String) {
+    func createNewItem(title: String, description: String) {
+        let currentDate = dateFormatter()
+        
         let newItem = Item()
         newItem.title = title
+        newItem.description = description
         newItem.done = false
-        newItem.date = "4/4/22"
+        newItem.date = currentDate[0]
+        newItem.time = currentDate[1]
         itemArray.append(newItem)
         
         saveItems()
+    }
+    
+    func dateFormatter() -> [String] {
+        let currentDate =  Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle     = .short
+        dateFormatter.timeStyle     = .short
+        dateFormatter.locale        = Locale(identifier: "en_US")
+        let newDate = dateFormatter.string(from: currentDate).components(separatedBy: ",")
+        
+        return newDate
     }
     
     func saveItems() {
@@ -70,6 +87,19 @@ class TodoListViewController: UITableViewController {
         } catch {
             print("Error encoding item array\(error)")
         }
+        
+    }
+    
+    func editItem(title: String, desc: String) {
+        let currentDate = dateFormatter()
+        itemArray[itemSelectedIndex].title = title
+        itemArray[itemSelectedIndex].description = desc
+        itemArray[itemSelectedIndex].date = currentDate[0]
+        itemArray[itemSelectedIndex].time = currentDate[1]
+        
+        let itemMoved = itemArray.remove(at: itemSelectedIndex)
+        itemArray.insert(itemMoved, at: 0)
+        //itemArray[itemSelectedIndex]
     }
     
     func loadItems() {
@@ -84,12 +114,13 @@ class TodoListViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goTodoDetail" {
+            let destinationVC = segue.destination as! TodoDetailViewController
+            destinationVC.itemSelectedTodoList = itemSelected
+            print("Hello", itemSelected)
+            //destinationVC.detailsTextView.text = itemSelected
+        }
         
-        let destinationVC = segue.destination as! TodoDetailViewController
-        destinationVC.itemSelectedTodoList = itemSelected
-        //destinationVC.detailsTextView.text = itemSelected
-        print(itemSelected)
-        print(itemArray)
     }
     
     @IBAction func unwindTodoListViewController(unwindSegue: UIStoryboardSegue) {

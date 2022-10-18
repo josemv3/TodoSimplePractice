@@ -9,6 +9,9 @@ import Foundation
 
 class Item: Codable {
     var title: String = ""
+    var description: String = ""
     var done: Bool = false
-    var date: String = "default"
+    var date: String = ""
+    var time: String = ""
+    
 }
