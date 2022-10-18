@@ -6,44 +6,50 @@
 //
 
 import UIKit
+import RealmSwift
 
-var itemArray = [Item()]
+
 let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Items.plist")
 
 class TodoListViewController: UITableViewController {
+    let realm = try! Realm()
+    var todoItems: Results<Item>?
+    var todoitemsSorted: Results<Item>?
     
     var itemSelected = Item()
     var itemSelectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let newItem = Item()
-//        newItem.title = "Dodgers"
-//        newItem.description = "YOYOYO"
-//        newItem.date = "1/1/22"
-//        itemArray.append(newItem)
-        
+                
         loadItems()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        itemArray.count
+        todoItems?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
-        cell.mainLabel.text = itemArray[indexPath.row].title
-        cell.detailLabel.text = itemArray[indexPath.row].description
-        cell.detailLabel.numberOfLines = 2
-        cell.dateLabel.text = itemArray[indexPath.row].date + itemArray[indexPath.row].time
+        
+        if let item = todoitemsSorted?[indexPath.row] {
+            cell.mainLabel.text = item.title
+            cell.detailLabel.text = item.desc
+            cell.detailLabel.numberOfLines = 2
+            cell.dateLabel.text = item.date + item.time
+        } else {
+            cell.mainLabel.text = "No Item Added"
+            cell.detailLabel.text = ""
+            cell.detailLabel.numberOfLines = 2
+            cell.dateLabel.text = ""
+        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        itemSelected = itemArray[indexPath.row]
+        itemSelected = todoitemsSorted![indexPath.row]
         itemSelectedIndex = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goTodoDetail", sender: self)
@@ -53,21 +59,27 @@ class TodoListViewController: UITableViewController {
     }
     
     func createNewItem(title: String, description: String) {
-        let currentDate = dateFormatter()
+        
         
         let newItem = Item()
         newItem.title = title
-        newItem.description = description
-        newItem.done = false
+        newItem.desc = description
+        let currentDate = dateFormatter(itemDate: newItem.dateActual)
         newItem.date = currentDate[0]
         newItem.time = currentDate[1]
-        itemArray.append(newItem)
+        //todoItems = realm.objects(Item.self)
         
-        saveItems()
+        do {
+            try realm.write {
+                realm.add(newItem)
+            }
+        } catch {
+            print("Error encoding item array\(error)")
+        }
     }
     
-    func dateFormatter() -> [String] {
-        let currentDate =  Date()
+    func dateFormatter(itemDate: Date) -> [String] {
+        let currentDate =  itemDate
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle     = .short
@@ -78,47 +90,31 @@ class TodoListViewController: UITableViewController {
         return newDate
     }
     
-    func saveItems() {
-        let encoder = PropertyListEncoder()
-        
-        do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
-        } catch {
-            print("Error encoding item array\(error)")
-        }
-        
-    }
-    
-    func editItem(title: String, desc: String) {
-        let currentDate = dateFormatter()
-        itemArray[itemSelectedIndex].title = title
-        itemArray[itemSelectedIndex].description = desc
-        itemArray[itemSelectedIndex].date = currentDate[0]
-        itemArray[itemSelectedIndex].time = currentDate[1]
-        
-        let itemMoved = itemArray.remove(at: itemSelectedIndex)
-        itemArray.insert(itemMoved, at: 0)
-        //itemArray[itemSelectedIndex]
+   func editItem(title: String, desc: String) {
+       
+       let todoToUpdate = todoitemsSorted![itemSelectedIndex]
+       try! realm.write {
+           todoToUpdate.title = title
+           todoToUpdate.desc = desc
+           todoToUpdate.dateActual = Date()
+           let currentDate = dateFormatter(itemDate: todoToUpdate.dateActual)
+           todoToUpdate.date = currentDate[0]
+           todoToUpdate.time = currentDate[1]
+       }
+       
     }
     
     func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error decoding itemArray\(error)")
-            }
-        }
+        
+        todoItems = realm.objects(Item.self)
+        todoitemsSorted = todoItems?.sorted(byKeyPath: "dateActual", ascending: false)
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goTodoDetail" {
             let destinationVC = segue.destination as! TodoDetailViewController
             destinationVC.itemSelectedTodoList = itemSelected
-            print("Hello", itemSelected)
-            //destinationVC.detailsTextView.text = itemSelected
         }
         
     }

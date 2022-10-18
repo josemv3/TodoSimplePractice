@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TodoAddViewController: UIViewController, UITextViewDelegate {
 
@@ -40,7 +41,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! TodoListViewController
-        destinationVC.createNewItem(title: todoAddTitleTF.text ?? "Blank", description: textView.text)
+        destinationVC.createNewItem(title: todoAddTitleTF.text ?? "Blank", description: textView.text)        
         destinationVC.tableView.reloadData()
     }
     

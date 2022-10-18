@@ -24,7 +24,7 @@ class TodoDetailViewController: UIViewController {
         detailsTextView.isEditable = false
         todoDetailsTitleTF.isUserInteractionEnabled = false
         todoDetailsTitleTF.text = itemSelectedTodoList.title
-        detailsTextView.text = itemSelectedTodoList.description
+        detailsTextView.text = itemSelectedTodoList.desc
         
     }
     

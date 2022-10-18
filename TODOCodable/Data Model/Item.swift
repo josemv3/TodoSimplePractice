@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Item: Codable {
-    var title: String = ""
-    var description: String = ""
-    var done: Bool = false
-    var date: String = ""
-    var time: String = ""
+class Item: Object {
+    @Persisted var title: String = ""
+    @Persisted var desc: String = ""
+    @Persisted var done: Bool = false
+    @Persisted var dateActual: Date = Date()
+    @Persisted var date: String = ""
+    @Persisted var time: String = ""
     
 }
