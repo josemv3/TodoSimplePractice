@@ -17,7 +17,6 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         loadItems()
     }
     
@@ -48,10 +47,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
-        
-        cell.layer.borderColor = UIColor.systemGreen.cgColor
-        cell.layer.borderWidth = 1
-        
+    
         if let item = todoitemsSorted?[indexPath.row] {
             cell.mainLabel.text = item.title
             cell.detailLabel.text = item.desc
@@ -71,9 +67,6 @@ class TodoListViewController: UITableViewController {
         itemSelectedIndex = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goTodoDetail", sender: self)
-    }
-
-    @IBAction func addButton(_ sender: UIBarButtonItem) {
     }
     
     func createNewItem(title: String, description: String) {

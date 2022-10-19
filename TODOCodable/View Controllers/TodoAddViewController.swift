@@ -20,7 +20,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         
         navigationItem.title = "TODO Add"
         textView.delegate = self
-        textView.text = "Tap here..."
+        textView.text = "Tap here to write details..."
         textView.textColor = UIColor.lightGray
     }
     
@@ -33,7 +33,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Tap here..."
+            textView.text = "Tap here to write details..."
             textView.textColor = UIColor.lightGray
         }
     }
