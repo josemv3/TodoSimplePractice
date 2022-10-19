@@ -52,6 +52,9 @@ class TodoListViewController: UITableViewController {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
         
+        cell.layer.borderColor = UIColor.systemGreen.cgColor
+        cell.layer.borderWidth = 2
+        
         if let item = todoitemsSorted?[indexPath.row] {
             cell.mainLabel.text = item.title
             cell.detailLabel.text = item.desc
