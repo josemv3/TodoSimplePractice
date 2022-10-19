@@ -24,7 +24,7 @@ class TodoListViewController: UITableViewController {
         loadItems()
     }
     
-    //MARK: - TableView Swipe action
+    //MARK: - TableView swipe action
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .destructive, title: "Complete!") { _, _, _ in
@@ -102,14 +102,20 @@ class TodoListViewController: UITableViewController {
     
     func editItem(title: String, desc: String) {
         let todoToUpdate = todoItems?[itemSelectedIndex]
-        try! realm.write {
-            todoToUpdate?.title = title
-            todoToUpdate?.desc = desc
-            todoToUpdate?.dateActual = Date()
-            let currentDate = dateFormatter(itemDate: todoToUpdate?.dateActual ?? Date())
-            todoToUpdate?.date = currentDate[0]
-            todoToUpdate?.time = currentDate[1]
+        
+        do{
+            try realm.write {
+                todoToUpdate?.title = title
+                todoToUpdate?.desc = desc
+                todoToUpdate?.dateActual = Date()
+                let currentDate = dateFormatter(itemDate: todoToUpdate?.dateActual ?? Date())
+                todoToUpdate?.date = currentDate[0]
+                todoToUpdate?.time = currentDate[1]
+            }
+        } catch {
+            print("Error encoding item array\(error)")
         }
+            
     }
     
     //MARK: - Segmented controller

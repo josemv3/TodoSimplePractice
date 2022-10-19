@@ -25,7 +25,6 @@ class TodoDetailViewController: UIViewController {
         todoDetailsTitleTF.isUserInteractionEnabled = false
         todoDetailsTitleTF.text = itemSelectedTodoList.title
         todoDetailsTV.text = itemSelectedTodoList.desc
-        
     }
     
     @IBAction func editBtnTap(_ sender: UIBarButtonItem) {
