@@ -23,7 +23,7 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
         loadItems()
     }
- 
+    
     //MARK: - TableView Swipe action
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
