@@ -11,7 +11,6 @@
 		E07EB20E28FB796900D7FD03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EB20D28FB796900D7FD03 /* SceneDelegate.swift */; };
 		E07EB21028FB796900D7FD03 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EB20F28FB796900D7FD03 /* TodoListViewController.swift */; };
 		E07EB21328FB796900D7FD03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07EB21128FB796900D7FD03 /* Main.storyboard */; };
-		E07EB21628FB796900D7FD03 /* TODOCodable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E07EB21428FB796900D7FD03 /* TODOCodable.xcdatamodeld */; };
 		E07EB21828FB796A00D7FD03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E07EB21728FB796A00D7FD03 /* Assets.xcassets */; };
 		E07EB21B28FB796A00D7FD03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07EB21928FB796A00D7FD03 /* LaunchScreen.storyboard */; };
 		E07EB22328FB7C3D00D7FD03 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07EB22228FB7C3D00D7FD03 /* Item.swift */; };
@@ -30,7 +29,6 @@
 		E07EB20D28FB796900D7FD03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E07EB20F28FB796900D7FD03 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		E07EB21228FB796900D7FD03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E07EB21528FB796900D7FD03 /* TODOCodable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TODOCodable.xcdatamodel; sourceTree = "<group>"; };
 		E07EB21728FB796A00D7FD03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E07EB21A28FB796A00D7FD03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E07EB21C28FB796A00D7FD03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			children = (
 				E07EB22228FB7C3D00D7FD03 /* Item.swift */,
 				E0A4242A28FC93CE0043A52E /* TodoListCell.swift */,
-				E07EB21428FB796900D7FD03 /* TODOCodable.xcdatamodeld */,
 				E0C821EE28FF075D00BFDBD7 /* RealmData.swift */,
 			);
 			path = "Data Model";
@@ -204,7 +201,6 @@
 			files = (
 				E07EB22528FB7DA300D7FD03 /* TodoAddViewController.swift in Sources */,
 				E07EB22328FB7C3D00D7FD03 /* Item.swift in Sources */,
-				E07EB21628FB796900D7FD03 /* TODOCodable.xcdatamodeld in Sources */,
 				E07EB21028FB796900D7FD03 /* TodoListViewController.swift in Sources */,
 				E0A4242B28FC93CE0043A52E /* TodoListCell.swift in Sources */,
 				E07EB20C28FB796900D7FD03 /* AppDelegate.swift in Sources */,
@@ -451,19 +447,6 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		E07EB21428FB796900D7FD03 /* TODOCodable.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E07EB21528FB796900D7FD03 /* TODOCodable.xcdatamodel */,
-			);
-			currentVersion = E07EB21528FB796900D7FD03 /* TODOCodable.xcdatamodel */;
-			path = TODOCodable.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E07EB20028FB796800D7FD03 /* Project object */;
 }

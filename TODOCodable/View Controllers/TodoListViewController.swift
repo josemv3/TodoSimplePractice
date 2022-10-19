@@ -8,14 +8,10 @@
 import UIKit
 import RealmSwift
 
-
-let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathExtension("Items.plist")
-
 class TodoListViewController: UITableViewController {
     let realm = try! Realm()
     var todoItems: Results<Item>?
     var todoitemsSorted: Results<Item>?
-    
     var itemSelected = Item()
     var itemSelectedIndex = 0
     
@@ -26,6 +22,7 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let complete = UIContextualAction(style: .destructive, title: "Complete!") { _, _, _ in
             print("Complete! pressed")
         
@@ -53,7 +50,7 @@ class TodoListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
         
         cell.layer.borderColor = UIColor.systemGreen.cgColor
-        cell.layer.borderWidth = 2
+        cell.layer.borderWidth = 1
         
         if let item = todoitemsSorted?[indexPath.row] {
             cell.mainLabel.text = item.title
@@ -66,7 +63,6 @@ class TodoListViewController: UITableViewController {
             cell.detailLabel.numberOfLines = 2
             cell.dateLabel.text = ""
         }
-        
         return cell
     }
     
@@ -81,7 +77,6 @@ class TodoListViewController: UITableViewController {
     }
     
     func createNewItem(title: String, description: String) {
-        
         
         let newItem = Item()
         newItem.title = title
@@ -123,18 +118,19 @@ class TodoListViewController: UITableViewController {
            todoToUpdate.date = currentDate[0]
            todoToUpdate.time = currentDate[1]
        }
-       
     }
     
     func loadItems() {
+        
+        //IF Var is == "somestring" {
+        //sorted false
+        //else sorted true
         
         //todoItems = realm.objects(Item.self)
         todoItems = realm.objects(Item.self).where {
             $0.done == false
         }
-
         todoitemsSorted = todoItems?.sorted(byKeyPath: "dateActual", ascending: false)
-    
     }
     
     func deleteItem(item: Item) {
@@ -152,7 +148,6 @@ class TodoListViewController: UITableViewController {
             let destinationVC = segue.destination as! TodoDetailViewController
             destinationVC.itemSelectedTodoList = itemSelected
         }
-        
     }
     
     @IBAction func unwindTodoListViewController(unwindSegue: UIStoryboardSegue) {
