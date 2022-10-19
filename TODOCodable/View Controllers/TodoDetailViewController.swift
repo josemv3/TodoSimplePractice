@@ -8,7 +8,7 @@
 import UIKit
 
 class TodoDetailViewController: UIViewController {
- 
+    
     @IBOutlet weak var todoDetailsTitleTF: UITextField!
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var editBtn: UIBarButtonItem!
@@ -41,19 +41,12 @@ class TodoDetailViewController: UIViewController {
         }
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-//        if todoDetailsTitleTF.isEditing {
-//            changeBtn.isEnabled = true
-//        }
-       //detailTextView no isEditing
-        
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! TodoListViewController
         destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: detailsTextView.text)
         destinationVC.tableView.reloadData()
     }
-  
-
+    
+    
 }

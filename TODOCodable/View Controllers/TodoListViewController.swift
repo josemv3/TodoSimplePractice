@@ -9,11 +9,15 @@ import UIKit
 import RealmSwift
 
 class TodoListViewController: UITableViewController {
+    
+    @IBOutlet weak var openDoneToggle: UIBarButtonItem!
+    
     let realm = try! Realm()
     var todoItems: Results<Item>?
     var todoitemsSorted: Results<Item>?
     var itemSelected = Item()
     var itemSelectedIndex = 0
+    var openDoneToggleSelected = "open"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,31 +27,32 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let complete = UIContextualAction(style: .destructive, title: "Complete!") { _, _, _ in
-            print("Complete! pressed")
-        
-            tableView.beginUpdates()
-            let todoToUpdate = self.todoitemsSorted![indexPath.row]
-            try! self.realm.write {
-                todoToUpdate.done = true
-            }
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
+            if self.openDoneToggleSelected == "open" {
+                tableView.beginUpdates()
+                let todoToUpdate = self.todoitemsSorted![indexPath.row]
+                try! self.realm.write {
+                    todoToUpdate.done = true
+                }
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            }
         }
         
         complete.backgroundColor = .systemGreen
         let swipe = UISwipeActionsConfiguration(actions: [complete])
         return swipe
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         todoItems?.count ?? 1
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoItemCell", for: indexPath) as! TodoListCell
+        
         if let item = todoitemsSorted?[indexPath.row] {
             cell.mainLabel.text = item.title
             cell.detailLabel.text = item.desc
@@ -77,7 +82,6 @@ class TodoListViewController: UITableViewController {
         let currentDate = dateFormatter(itemDate: newItem.dateActual)
         newItem.date = currentDate[0]
         newItem.time = currentDate[1]
-        //todoItems = realm.objects(Item.self)
         
         do {
             try realm.write {
@@ -100,36 +104,42 @@ class TodoListViewController: UITableViewController {
         return newDate
     }
     
-   func editItem(title: String, desc: String) {
-       
-       let todoToUpdate = todoitemsSorted![itemSelectedIndex]
-       try! realm.write {
-           todoToUpdate.title = title
-           todoToUpdate.desc = desc
-           todoToUpdate.dateActual = Date()
-           let currentDate = dateFormatter(itemDate: todoToUpdate.dateActual)
-           todoToUpdate.date = currentDate[0]
-           todoToUpdate.time = currentDate[1]
-       }
+    func editItem(title: String, desc: String) {
+        
+        let todoToUpdate = todoitemsSorted![itemSelectedIndex]
+        try! realm.write {
+            todoToUpdate.title = title
+            todoToUpdate.desc = desc
+            todoToUpdate.dateActual = Date()
+            let currentDate = dateFormatter(itemDate: todoToUpdate.dateActual)
+            todoToUpdate.date = currentDate[0]
+            todoToUpdate.time = currentDate[1]
+        }
     }
     
     func loadItems() {
         
-        //IF Var is == "somestring" {
-        //sorted false
-        //else sorted true
-        
-        //todoItems = realm.objects(Item.self)
-        todoItems = realm.objects(Item.self).where {
-            $0.done == false
+        if openDoneToggleSelected == "open" {
+            todoItems = realm.objects(Item.self).where {
+                $0.done == false
+            }
+            todoitemsSorted = todoItems?.sorted(
+                byKeyPath: "dateActual", ascending: false)
+            
+        } else if openDoneToggleSelected == "done" {
+            
+            todoItems = realm.objects(Item.self).where {
+                $0.done == true
+            }
+            todoitemsSorted = todoItems?.sorted(
+                byKeyPath: "dateActual", ascending: false)
         }
-        todoitemsSorted = todoItems?.sorted(byKeyPath: "dateActual", ascending: false)
     }
     
-    func deleteItem(item: Item) {
+    func deleteItem(item: Item) { //Not used yet
         do {
             try realm.write {
-                realm.add(item)
+                realm.delete(item)
             }
         } catch {
             print("Error encoding item array\(error)")
@@ -143,9 +153,19 @@ class TodoListViewController: UITableViewController {
         }
     }
     
+    @IBAction func openDoneToggleTap(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            openDoneToggleSelected = "open"
+        } else {
+            openDoneToggleSelected = "done"
+        }
+        loadItems()
+        tableView.reloadData()
+    }
+    
     @IBAction func unwindTodoListViewController(unwindSegue: UIStoryboardSegue) {
     }
     //use viewWillApear for ipad
-
+    
 }
 

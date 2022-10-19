@@ -72,14 +72,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="TODO" id="UBy-ue-ToT">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="oSw-t0-Wnc">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="x28-sX-GvP">
-                                <rect key="frame" x="-65" y="-15" width="86" height="32"/>
+                        <barButtonItem key="leftBarButtonItem" style="done" id="oSw-t0-Wnc">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="x28-sX-GvP">
+                                <rect key="frame" x="16" y="5.6666666666666679" width="131" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="Open"/>
+                                    <segment title="Done"/>
                                 </segments>
+                                <connections>
+                                    <action selector="openDoneToggleTap:" destination="inc-C7-vXg" eventType="valueChanged" id="X7K-dH-P7M"/>
+                                </connections>
                             </segmentedControl>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H05-Lj-WNr">
@@ -90,6 +94,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="openDoneToggle" destination="oSw-t0-Wnc" id="itx-oT-whP"/>
                         <segue destination="FDv-Gb-w31" kind="show" identifier="goTodoDetail" id="WxA-5i-Ci2"/>
                     </connections>
                 </tableViewController>

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         do {
             Realm.Configuration.defaultConfiguration = config
-            let realm = try Realm()
+            _ = try Realm()
         } catch {
             print("Error installing new realm \(error)")
         }
