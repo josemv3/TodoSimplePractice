@@ -51,7 +51,6 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     @IBAction func cancelBtnTap(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 
