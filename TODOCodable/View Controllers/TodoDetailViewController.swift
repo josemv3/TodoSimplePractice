@@ -10,7 +10,7 @@ import UIKit
 class TodoDetailViewController: UIViewController {
     
     @IBOutlet weak var todoDetailsTitleTF: UITextField!
-    @IBOutlet weak var detailsTextView: UITextView!
+    @IBOutlet weak var todoDetailsTV: UITextView!
     @IBOutlet weak var editBtn: UIBarButtonItem!
     @IBOutlet weak var changeBtn: UIBarButtonItem!
     
@@ -21,20 +21,20 @@ class TodoDetailViewController: UIViewController {
         navigationItem.title = "TODO Details"
         
         changeBtn.isEnabled = false
-        detailsTextView.isEditable = false
+        todoDetailsTV.isEditable = false
         todoDetailsTitleTF.isUserInteractionEnabled = false
         todoDetailsTitleTF.text = itemSelectedTodoList.title
-        detailsTextView.text = itemSelectedTodoList.desc
+        todoDetailsTV.text = itemSelectedTodoList.desc
         
     }
     
     @IBAction func editBtnTap(_ sender: UIBarButtonItem) {
-        if detailsTextView.isEditable == false {
-            detailsTextView.isEditable = true
+        if todoDetailsTV.isEditable == false {
+            todoDetailsTV.isEditable = true
             todoDetailsTitleTF.isUserInteractionEnabled = true
             changeBtn.isEnabled = true
         } else {
-            detailsTextView.isEditable = false
+            todoDetailsTV.isEditable = false
             todoDetailsTitleTF.isUserInteractionEnabled = false
             changeBtn.isEnabled = false
         }
@@ -42,7 +42,7 @@ class TodoDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
-        destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: detailsTextView.text)
+        destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: todoDetailsTV.text)
         destinationVC.tableView.reloadData()
     }
     
