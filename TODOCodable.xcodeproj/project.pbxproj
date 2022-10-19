@@ -20,7 +20,6 @@
 		E0A4242B28FC93CE0043A52E /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A4242A28FC93CE0043A52E /* TodoListCell.swift */; };
 		E0C821EB28FF054300BFDBD7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E0C821EA28FF054300BFDBD7 /* Realm */; };
 		E0C821ED28FF054300BFDBD7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E0C821EC28FF054300BFDBD7 /* RealmSwift */; };
-		E0C821EF28FF075D00BFDBD7 /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C821EE28FF075D00BFDBD7 /* RealmData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		E07EB22A28FB892A00D7FD03 /* TodoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetailViewController.swift; sourceTree = "<group>"; };
 		E0A4242828FC87000043A52E /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		E0A4242A28FC93CE0043A52E /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
-		E0C821EE28FF075D00BFDBD7 /* RealmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +106,6 @@
 			children = (
 				E07EB22228FB7C3D00D7FD03 /* Item.swift */,
 				E0A4242A28FC93CE0043A52E /* TodoListCell.swift */,
-				E0C821EE28FF075D00BFDBD7 /* RealmData.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 				E0A4242B28FC93CE0043A52E /* TodoListCell.swift in Sources */,
 				E07EB20C28FB796900D7FD03 /* AppDelegate.swift in Sources */,
 				E0A4242928FC87000043A52E /* KeyboardLayoutConstraint.swift in Sources */,
-				E0C821EF28FF075D00BFDBD7 /* RealmData.swift in Sources */,
 				E07EB20E28FB796900D7FD03 /* SceneDelegate.swift in Sources */,
 				E07EB22B28FB892A00D7FD03 /* TodoDetailViewController.swift in Sources */,
 			);
