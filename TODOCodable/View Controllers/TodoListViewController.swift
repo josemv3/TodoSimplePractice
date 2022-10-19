@@ -24,6 +24,25 @@ class TodoListViewController: UITableViewController {
                 
         loadItems()
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = UIContextualAction(style: .destructive, title: "Complete!") { _, _, _ in
+            print("Complete! pressed")
+        
+            tableView.beginUpdates()
+            let todoToUpdate = self.todoitemsSorted![indexPath.row]
+            try! self.realm.write {
+                todoToUpdate.done = true
+            }
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+        
+        complete.backgroundColor = .systemGreen
+        let swipe = UISwipeActionsConfiguration(actions: [complete])
+        return swipe
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         todoItems?.count ?? 1
@@ -106,9 +125,23 @@ class TodoListViewController: UITableViewController {
     
     func loadItems() {
         
-        todoItems = realm.objects(Item.self)
+        //todoItems = realm.objects(Item.self)
+        todoItems = realm.objects(Item.self).where {
+            $0.done == false
+        }
+
         todoitemsSorted = todoItems?.sorted(byKeyPath: "dateActual", ascending: false)
     
+    }
+    
+    func deleteItem(item: Item) {
+        do {
+            try realm.write {
+                realm.add(item)
+            }
+        } catch {
+            print("Error encoding item array\(error)")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

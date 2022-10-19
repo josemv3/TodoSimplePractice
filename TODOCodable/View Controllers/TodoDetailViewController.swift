@@ -52,7 +52,6 @@ class TodoDetailViewController: UIViewController {
         
         let destinationVC = segue.destination as! TodoListViewController
         destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: detailsTextView.text)
-        destinationVC.saveItems()
         destinationVC.tableView.reloadData()
     }
   
