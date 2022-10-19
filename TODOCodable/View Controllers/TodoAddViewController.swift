@@ -13,7 +13,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var todoAddTitleTF: UITextField!
     
-    var newTitle = ""
+    private var newTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,8 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         textView.text = "Tap here to write details..."
         textView.textColor = UIColor.lightGray
     }
+    
+    //MARK: - Prepare user with placholder text
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -38,8 +40,9 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    //MARK: - Segue/Dismiss
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let destinationVC = segue.destination as! TodoListViewController
         destinationVC.createNewItem(title: todoAddTitleTF.text ?? "Blank", description: textView.text)
         destinationVC.tableView.reloadData()

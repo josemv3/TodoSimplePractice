@@ -29,7 +29,6 @@ class TodoDetailViewController: UIViewController {
     }
     
     @IBAction func editBtnTap(_ sender: UIBarButtonItem) {
-        
         if detailsTextView.isEditable == false {
             detailsTextView.isEditable = true
             todoDetailsTitleTF.isUserInteractionEnabled = true
@@ -42,7 +41,6 @@ class TodoDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let destinationVC = segue.destination as! TodoListViewController
         destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: detailsTextView.text)
         destinationVC.tableView.reloadData()

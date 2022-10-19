@@ -78,9 +78,7 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
                 
                 break
             }
-            
         }
-        
     }
     
     @objc func keyboardWillHideNotification(_ notification: NSNotification) {

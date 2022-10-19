@@ -105,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				E07EB22228FB7C3D00D7FD03 /* Item.swift */,
-				E0A4242A28FC93CE0043A52E /* TodoListCell.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -114,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				E07EB21128FB796900D7FD03 /* Main.storyboard */,
+				E0A4242A28FC93CE0043A52E /* TodoListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
