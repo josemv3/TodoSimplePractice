@@ -75,12 +75,12 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="Dfr-dc-BJu"/>
                         <barButtonItem key="leftBarButtonItem" style="done" id="oSw-t0-Wnc">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="x28-sX-GvP">
-                                <rect key="frame" x="16" y="5.6666666666666679" width="131" height="33"/>
+                                <rect key="frame" x="16" y="5" width="157" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Open"/>
-                                    <segment title="Done"/>
+                                    <segment title="Complete"/>
                                 </segments>
                                 <connections>
                                     <action selector="openDoneToggleTap:" destination="inc-C7-vXg" eventType="valueChanged" id="X7K-dH-P7M"/>
@@ -112,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="waD-rV-RnY">
-                                <rect key="frame" x="0.0" y="140" width="390" height="661"/>
+                                <rect key="frame" x="16" y="176" width="358" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -120,21 +120,50 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JlP-7e-49L">
-                                <rect key="frame" x="0.0" y="91" width="390" height="34"/>
+                                <rect key="frame" x="16" y="91" width="358" height="34"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msn-7r-q7D">
+                                <rect key="frame" x="23" y="139" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1x-BU-SSB">
+                                <rect key="frame" x="90" y="139" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prG-5h-E6S">
+                                <rect key="frame" x="287" y="133" width="87" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <connections>
+                                    <segue destination="ENv-PN-zmL" kind="unwind" unwindAction="unwindTodoListViewControllerWithUnwindSegue:" id="IjR-uf-ZhS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BlL-4X-g35"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="waD-rV-RnY" firstAttribute="leading" secondItem="GEu-b6-DOt" secondAttribute="leading" id="2Pw-s5-XA0"/>
+                            <constraint firstItem="BlL-4X-g35" firstAttribute="trailing" secondItem="w1x-BU-SSB" secondAttribute="trailing" constant="216" id="0OF-4J-73a"/>
+                            <constraint firstItem="waD-rV-RnY" firstAttribute="leading" secondItem="GEu-b6-DOt" secondAttribute="leading" constant="16" id="2Pw-s5-XA0"/>
                             <constraint firstItem="JlP-7e-49L" firstAttribute="trailing" secondItem="waD-rV-RnY" secondAttribute="trailing" id="3Pn-6F-7ls"/>
-                            <constraint firstItem="waD-rV-RnY" firstAttribute="top" secondItem="BlL-4X-g35" secondAttribute="top" constant="49" id="Qb3-Vx-998"/>
+                            <constraint firstItem="prG-5h-E6S" firstAttribute="trailing" secondItem="GEu-b6-DOt" secondAttribute="trailingMargin" id="8UT-VB-OT8"/>
+                            <constraint firstItem="msn-7r-q7D" firstAttribute="top" secondItem="JlP-7e-49L" secondAttribute="bottom" constant="14" id="OTu-9t-LS1"/>
+                            <constraint firstItem="waD-rV-RnY" firstAttribute="top" secondItem="BlL-4X-g35" secondAttribute="top" constant="85" id="Qb3-Vx-998"/>
+                            <constraint firstItem="msn-7r-q7D" firstAttribute="leading" secondItem="GEu-b6-DOt" secondAttribute="leadingMargin" constant="7" id="VWB-jA-PT3"/>
+                            <constraint firstItem="prG-5h-E6S" firstAttribute="top" secondItem="JlP-7e-49L" secondAttribute="bottom" constant="8" id="WsE-Ih-dnu"/>
+                            <constraint firstItem="w1x-BU-SSB" firstAttribute="baseline" secondItem="msn-7r-q7D" secondAttribute="baseline" id="YXh-30-Ysr"/>
                             <constraint firstItem="JlP-7e-49L" firstAttribute="top" secondItem="BlL-4X-g35" secondAttribute="top" id="Zy4-6i-Dt5"/>
-                            <constraint firstAttribute="trailing" secondItem="waD-rV-RnY" secondAttribute="trailing" id="kiO-f9-TYj"/>
-                            <constraint firstAttribute="bottom" secondItem="waD-rV-RnY" secondAttribute="bottom" constant="43" id="plq-tu-dGJ" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
+                            <constraint firstItem="w1x-BU-SSB" firstAttribute="leading" secondItem="msn-7r-q7D" secondAttribute="trailing" constant="8" id="d3g-yz-GaX"/>
+                            <constraint firstAttribute="trailing" secondItem="waD-rV-RnY" secondAttribute="trailing" constant="16" id="kiO-f9-TYj"/>
+                            <constraint firstItem="prG-5h-E6S" firstAttribute="leading" secondItem="w1x-BU-SSB" secondAttribute="trailing" constant="113" id="mg2-8I-sOl"/>
+                            <constraint firstAttribute="bottom" secondItem="waD-rV-RnY" secondAttribute="bottom" constant="45" id="plq-tu-dGJ" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
                             <constraint firstItem="JlP-7e-49L" firstAttribute="leading" secondItem="waD-rV-RnY" secondAttribute="leading" id="tWh-kP-x6h"/>
+                            <constraint firstItem="BlL-4X-g35" firstAttribute="trailing" secondItem="msn-7r-q7D" secondAttribute="trailing" constant="308" id="zCj-au-Lce"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="83f-gM-I4E">
@@ -146,19 +175,21 @@
                                     <action selector="editBtnTap:" destination="FDv-Gb-w31" id="1UQ-6O-P4d"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Change" id="YGC-7D-5QC">
+                            <barButtonItem title="Complete" id="YGC-7D-5QC">
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="ENv-PN-zmL" kind="unwind" identifier="unwindDetails" unwindAction="unwindTodoListViewControllerWithUnwindSegue:" id="5W8-yK-qo0"/>
+                                    <action selector="completeBtnTap:" destination="FDv-Gb-w31" id="T2n-5t-zDj"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="changeBtn" destination="YGC-7D-5QC" id="t2L-mY-Tq5"/>
+                        <outlet property="completeBtn" destination="YGC-7D-5QC" id="t2L-mY-Tq5"/>
                         <outlet property="editBtn" destination="Uub-3a-kq9" id="NQq-yG-AVu"/>
-                        <outlet property="todoDetailsTV" destination="waD-rV-RnY" id="fAc-Ms-gnz"/>
-                        <outlet property="todoDetailsTitleTF" destination="JlP-7e-49L" id="4BW-aL-dwk"/>
+                        <outlet property="statusDescriptionLabel" destination="w1x-BU-SSB" id="2Nu-g6-nRx"/>
+                        <outlet property="statusLabel" destination="msn-7r-q7D" id="ivp-Rk-WlL"/>
+                        <outlet property="todoDetailsTextView" destination="waD-rV-RnY" id="fAc-Ms-gnz"/>
+                        <outlet property="todoDetailsTitleTextFeild" destination="JlP-7e-49L" id="4BW-aL-dwk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amf-fa-mcm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -175,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GOM-ag-DnT">
-                                <rect key="frame" x="0.0" y="150" width="390" height="705"/>
+                                <rect key="frame" x="16" y="150" width="358" height="739"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -190,13 +221,13 @@
                         <viewLayoutGuide key="safeArea" id="GLZ-fb-xWO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="GOM-ag-DnT" firstAttribute="leading" secondItem="GLZ-fb-xWO" secondAttribute="leading" id="0lO-e9-0vq"/>
-                            <constraint firstItem="EMM-sg-lF4" firstAttribute="leading" secondItem="GOM-ag-DnT" secondAttribute="leading" id="D1d-gL-mMy"/>
-                            <constraint firstItem="EMM-sg-lF4" firstAttribute="trailing" secondItem="GOM-ag-DnT" secondAttribute="trailing" id="IFg-AF-SPY"/>
+                            <constraint firstItem="GOM-ag-DnT" firstAttribute="leading" secondItem="GLZ-fb-xWO" secondAttribute="leading" constant="16" id="0lO-e9-0vq"/>
+                            <constraint firstItem="EMM-sg-lF4" firstAttribute="leading" secondItem="GOM-ag-DnT" secondAttribute="leading" constant="-16" id="D1d-gL-mMy"/>
+                            <constraint firstItem="EMM-sg-lF4" firstAttribute="trailing" secondItem="GOM-ag-DnT" secondAttribute="trailing" constant="16" id="IFg-AF-SPY"/>
                             <constraint firstItem="GOM-ag-DnT" firstAttribute="centerX" secondItem="TVo-uq-GF6" secondAttribute="centerX" id="NmT-OV-8Ii"/>
                             <constraint firstItem="GOM-ag-DnT" firstAttribute="top" secondItem="GLZ-fb-xWO" secondAttribute="top" constant="94" id="YI6-gg-hRE"/>
                             <constraint firstItem="EMM-sg-lF4" firstAttribute="top" secondItem="GLZ-fb-xWO" secondAttribute="top" constant="26" id="aFe-a0-4Ak"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="GOM-ag-DnT" secondAttribute="bottom" constant="-68" id="dfy-8Q-vT0" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="GOM-ag-DnT" secondAttribute="bottom" constant="-102" id="dfy-8Q-vT0" customClass="KeyboardLayoutConstraint" customModule="TODOCodable" customModuleProvider="target"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CO3-zG-m1n">
@@ -212,8 +243,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="textView" destination="GOM-ag-DnT" id="dXs-Gp-20G"/>
-                        <outlet property="todoAddTitleTF" destination="EMM-sg-lF4" id="UbI-Va-N9O"/>
+                        <outlet property="todoAddTextView" destination="GOM-ag-DnT" id="dXs-Gp-20G"/>
+                        <outlet property="todoAddTitleTextField" destination="EMM-sg-lF4" id="UbI-Va-N9O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISk-ZP-0oe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

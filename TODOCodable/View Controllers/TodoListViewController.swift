@@ -100,13 +100,14 @@ class TodoListViewController: UITableViewController {
         }.sorted(byKeyPath: "dateActual", ascending: false)
     }
     
-    func editItem(title: String, desc: String) {
+    func editItem(title: String, desc: String, status: Bool) {
         let todoToUpdate = todoItems?[itemSelectedIndex]
         
         do{
             try realm.write {
                 todoToUpdate?.title = title
                 todoToUpdate?.desc = desc
+                todoToUpdate?.done = status
                 todoToUpdate?.dateActual = Date()
                 let currentDate = dateFormatter(itemDate: todoToUpdate?.dateActual ?? Date())
                 todoToUpdate?.date = currentDate[0]

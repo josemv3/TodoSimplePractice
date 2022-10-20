@@ -9,41 +9,59 @@ import UIKit
 
 class TodoDetailViewController: UIViewController {
     
-    @IBOutlet weak var todoDetailsTitleTF: UITextField!
-    @IBOutlet weak var todoDetailsTV: UITextView!
+    @IBOutlet weak var todoDetailsTitleTextFeild: UITextField!
+    @IBOutlet weak var todoDetailsTextView: UITextView!
     @IBOutlet weak var editBtn: UIBarButtonItem!
-    @IBOutlet weak var changeBtn: UIBarButtonItem!
+    @IBOutlet weak var completeBtn: UIBarButtonItem!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var statusDescriptionLabel: UILabel!
     
     var itemSelectedTodoList = Item()
+    var completeStatus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "TODO Details"
+        navigationItem.title = "Details"
+        checkStatus()
+        completeBtn.isEnabled = false
+        todoDetailsTextView.isEditable = false
+        todoDetailsTitleTextFeild.isUserInteractionEnabled = false
+        todoDetailsTitleTextFeild.text = itemSelectedTodoList.title
+        todoDetailsTextView.text = itemSelectedTodoList.desc
         
-        changeBtn.isEnabled = false
-        todoDetailsTV.isEditable = false
-        todoDetailsTitleTF.isUserInteractionEnabled = false
-        todoDetailsTitleTF.text = itemSelectedTodoList.title
-        todoDetailsTV.text = itemSelectedTodoList.desc
+    }
+    
+    func checkStatus() {
+        if itemSelectedTodoList.done == true {
+            completeStatus = true
+            statusDescriptionLabel.text = "Complete"
+            statusDescriptionLabel.backgroundColor = .systemGreen
+        }
     }
     
     @IBAction func editBtnTap(_ sender: UIBarButtonItem) {
-        if todoDetailsTV.isEditable == false {
-            todoDetailsTV.isEditable = true
-            todoDetailsTitleTF.isUserInteractionEnabled = true
-            changeBtn.isEnabled = true
+        if todoDetailsTextView.isEditable == false {
+            todoDetailsTextView.isEditable = true
+            todoDetailsTitleTextFeild.isUserInteractionEnabled = true
+            completeBtn.isEnabled = true
         } else {
-            todoDetailsTV.isEditable = false
-            todoDetailsTitleTF.isUserInteractionEnabled = false
-            changeBtn.isEnabled = false
+            todoDetailsTextView.isEditable = false
+            todoDetailsTitleTextFeild.isUserInteractionEnabled = false
+            completeBtn.isEnabled = false
+        }
+    }
+    
+    @IBAction func completeBtnTap(_ sender: UIBarButtonItem) {
+        if itemSelectedTodoList.done == false {
+            completeStatus = true
+            statusDescriptionLabel.text = "Complete"
+            statusDescriptionLabel.backgroundColor = .systemGreen
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
-        destinationVC.editItem(title: todoDetailsTitleTF.text ?? "", desc: todoDetailsTV.text)
+        destinationVC.editItem(title: todoDetailsTitleTextFeild.text ?? "", desc: todoDetailsTextView.text, status: completeStatus)
         destinationVC.tableView.reloadData()
     }
-    
-    
 }

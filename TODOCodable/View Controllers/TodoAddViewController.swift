@@ -10,18 +10,18 @@ import RealmSwift
 
 class TodoAddViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var todoAddTitleTF: UITextField!
+    @IBOutlet weak var todoAddTextView: UITextView!
+    @IBOutlet weak var todoAddTitleTextField: UITextField!
     
     private var newTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "TODO Add"
-        textView.delegate = self
-        textView.text = "Tap here to write details..."
-        textView.textColor = UIColor.lightGray
+        navigationItem.title = "New"
+        todoAddTextView.delegate = self
+        todoAddTextView.text = "Tap here to write details..."
+        todoAddTextView.textColor = UIColor.lightGray
     }
     
     //MARK: - Prepare user with placholder text
@@ -44,7 +44,7 @@ class TodoAddViewController: UIViewController, UITextViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListViewController
-        destinationVC.createNewItem(title: todoAddTitleTF.text ?? "Blank", description: textView.text)
+        destinationVC.createNewItem(title: todoAddTitleTextField.text ?? "Blank", description: todoAddTextView.text)
         destinationVC.tableView.reloadData()
     }
     
