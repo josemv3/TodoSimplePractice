@@ -35,7 +35,6 @@ class TodoListViewController: UITableViewController {
                 try! self.realm.write {
                     todoToUpdate?.done = true
                 }
-                
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 tableView.endUpdates()
             }
