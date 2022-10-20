@@ -10,14 +10,14 @@ import RealmSwift
 
 class TodoListViewController: UITableViewController {
     
-    @IBOutlet weak var openDoneToggle: UIBarButtonItem!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     private let realm = try! Realm()
     //Do, Catch, Try in AppDelegate. Docs say after initial unwrap Realm call wont fail.
     //Force unwrap is safe.
     private var todoItems: Results<Item>?
     var itemSelectedIndex = 0
-    private var openDoneToggleSelected = "open"
+    private var segmentedControlSelected = "open"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .destructive, title: "Complete!") { _, _, _ in
             
-            if self.openDoneToggleSelected == "open" {
+            if self.segmentedControlSelected == "open" {
                 tableView.beginUpdates()
                 let todoToUpdate = self.todoItems?[indexPath.row]
                 try! self.realm.write {
@@ -94,7 +94,7 @@ class TodoListViewController: UITableViewController {
     }
     
     private func loadItems() {
-        let completed = openDoneToggleSelected == "done"
+        let completed = segmentedControlSelected == "complete"
         todoItems = realm.objects(Item.self).where {
             $0.done == completed
         }.sorted(byKeyPath: "dateActual", ascending: false)
@@ -116,16 +116,15 @@ class TodoListViewController: UITableViewController {
         } catch {
             print("Error encoding item array\(error)")
         }
-            
     }
     
     //MARK: - Segmented controller
     
-    @IBAction func openDoneToggleTap(_ sender: UISegmentedControl) {
+    @IBAction func segmentedControlTap(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            openDoneToggleSelected = "open"
+            segmentedControlSelected = "open"
         } else {
-            openDoneToggleSelected = "done"
+            segmentedControlSelected = "complete"
         }
         loadItems()
         tableView.reloadData()

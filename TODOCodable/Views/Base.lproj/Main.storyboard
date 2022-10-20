@@ -16,9 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eCN-I6-MO3">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Open"/>
+                                <segment title="Complete"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlTap:" destination="inc-C7-vXg" eventType="valueChanged" id="wfa-Sb-rN9"/>
+                            </connections>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" rowHeight="90" id="GTQ-UI-ZEk" customClass="TodoListCell" customModule="TODOCodable" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="390" height="90"/>
+                                <rect key="frame" x="0.0" y="82" width="390" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GTQ-UI-ZEk" id="yQM-XL-IZI">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="90"/>
@@ -73,20 +84,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="TODO" id="UBy-ue-ToT">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Dfr-dc-BJu"/>
-                        <barButtonItem key="leftBarButtonItem" style="done" id="oSw-t0-Wnc">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="x28-sX-GvP">
-                                <rect key="frame" x="16" y="5" width="157" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <segments>
-                                    <segment title="Open"/>
-                                    <segment title="Complete"/>
-                                </segments>
-                                <connections>
-                                    <action selector="openDoneToggleTap:" destination="inc-C7-vXg" eventType="valueChanged" id="X7K-dH-P7M"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H05-Lj-WNr">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -95,7 +92,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="openDoneToggle" destination="oSw-t0-Wnc" id="itx-oT-whP"/>
+                        <outlet property="segmentedControl" destination="eCN-I6-MO3" id="lDK-pv-Nhc"/>
                         <segue destination="FDv-Gb-w31" kind="show" identifier="goTodoDetail" id="WxA-5i-Ci2"/>
                     </connections>
                 </tableViewController>

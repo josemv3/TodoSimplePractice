@@ -28,7 +28,6 @@ class TodoDetailViewController: UIViewController {
         todoDetailsTitleTextFeild.isUserInteractionEnabled = false
         todoDetailsTitleTextFeild.text = itemSelectedTodoList.title
         todoDetailsTextView.text = itemSelectedTodoList.desc
-        
     }
     
     func checkStatus() {
